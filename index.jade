@@ -1,6 +1,7 @@
 html
   head
     include _nav.jade
+    script(src="/js/jquery.min.js")
   body
     section.home
       .right
@@ -14,13 +15,87 @@ html
     section.about#about
       include _about.jade
 
-    section.contact
-      a(name="contact")
-      h1 Contact
+    section.contact#contact
+      include _contact.jade
 
-      .content
-        h3 Svanimir Steiner
-        address Zagreb, Croatia
+    section.map#map
 
-    section.map
+script.
+  $(document).ready(function() {
+    var $document = $(document);
+    var $htmlBody = $('html,body');
+    var $body = $(document.body);
+    var $sections = $('section');
+    var $nav = $('nav');
+    var animating = false;
 
+    function scrollTo(destination, hash) {
+      var position = $document.scrollTop();
+      window.location.hash = hash;
+      $document.scrollTop(position);
+      animating = true;
+      $htmlBody
+      .animate({scrollTop: destination}, 300, 'swing', function() {
+        setTimeout(function() {
+          animating = false;
+        }, 100);
+      });
+    }
+
+    function markActiveNavLink(id) {
+      $navLinks.removeClass('active');
+      $navLinks.filter('#link-' + id).addClass('active');
+    }
+
+    $navLinks = $('.rel-link');
+
+    $navLinks.on('click', function() {
+      var $this = $(this);
+
+      var href = $this.attr('href');
+      markActiveNavLink(href.substring(1));
+      if ($(href).length) {
+        scrollTo($(href).offset().top, href);
+        return false;
+      }
+
+      if (href === '#') {
+        scrollTo(0, href);
+        return false;
+      }
+
+      window.location = href;
+      return false;
+    });
+
+    $document.on('scroll', function() {
+      if (animating) return;
+      var scrollTop = $document.scrollTop();
+      var section = $sections
+      .filter(function() {
+        return scrollTop - $(this).offset().top >= -$nav.height();
+      })
+      .sort(function(s1, s2) {
+        return $(s2).offset().top - $(s1).offset().top
+      })[0];
+
+      var hash = window.location.hash.substring(1);
+      if (section && hash !== section.id) {
+        var id = section.id;
+        markActiveNavLink(id);
+        if (window.history && window.history.replaceState) {
+          window.history.replaceState(undefined, undefined, '#' + section.id);
+        }
+      }
+    });
+
+    $document.on('scroll', function() {
+      if ($document.scrollTop() > 0.3 * window.innerHeight) {
+        $('.nav').addClass('small');
+      } else {
+        $('.nav').removeClass('small');
+      }
+    })
+
+    markActiveNavLink(window.location.hash.substring(1));
+  });
