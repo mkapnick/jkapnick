@@ -1,0 +1,86 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Century Gothic','Didact Gothic','Times New Roman', serif;
+  text-align: center;
+  padding: 0;
+  background: #fff;
+  color: #000;
+  margin: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+h1 {
+  font-size: 65px;
+  line-height: 1.2em;
+  border-bottom: #CCC solid 1px;
+  padding: 20px 0;
+}
+
+h3 {
+  font-weight: 300;
+}
+
+section {
+  position: relative;
+  min-height: 100%;
+  box-sizing: border-box;
+  background: 100% 0% / cover;
+}
+
+section.home {
+  background-attachment: fixed;
+  background-image: url(assets/header2.jpg);
+  position: relative;
+
+  .right {
+    padding-top: 7rem;
+    text-shadow: 0 0rem 0.2rem rgba(255,255,255,0.4);
+  }
+}
+
+ul {
+  display: block;
+  list-style-type: disc;
+  -webkit-margin-before: 1em;
+  -webkit-margin-after: 1em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  -webkit-padding-start: 40px;
+}
+
+.nav {
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  right: 0;
+  font-size: 1.5rem;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+
+  ul {
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: inline-block;
+      list-style-type: none;
+
+      a {
+        font-weight: normal;
+        display: inline-block;
+        padding: 1rem;
+      }
+    }
+  }
+}
+
+@media (min-width: 720px) {
+  section.title .right {
+    margin-right: 5rem;
+    text-align: right;
+  }
+}
