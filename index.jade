@@ -3,8 +3,16 @@ html
     include _nav.jade
   body
     section.home
-
-    section.about
+      .right
+        h1
+          div
+            font Jordan Kapnick
+        address
+            | 800 Avenue of the Americas
+            br
+            | New York, NY 10001
+    section.about#about
+      include _about.jade
 
     section.contact
       a(name="contact")
