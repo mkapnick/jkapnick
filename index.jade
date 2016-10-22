@@ -4,6 +4,7 @@ html
     script(src="/js/jquery.min.js")
   body
     section.home#home
+      img(src="/images/jkapnick_home_main_5.jpg")
       .right
         h1
           div
@@ -12,6 +13,11 @@ html
             | 800 Avenue of the Americas
             br
             | New York, NY 10001
+
+    .relative
+      .bottom
+        a.rel-link.scroll-down(href="#about")
+          span.icon-chevron-thin-down(data-href='#about')
 
     section.about#about
       include _about.jade
@@ -90,14 +96,6 @@ script.
         }
       }
     });
-
-    $document.on('scroll', function() {
-      if ($document.scrollTop() > 0.3 * window.innerHeight) {
-        $('.nav').addClass('small');
-      } else {
-        $('.nav').removeClass('small');
-      }
-    })
 
     markActiveNavLink(window.location.hash.substring(1));
   });
