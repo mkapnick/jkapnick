@@ -155,6 +155,34 @@ ul {
   }
 }
 
+p.b {
+  font-size: 25px;
+  font-weight: 900;
+  border-bottom: 2px solid #e7e7e7;
+}
+
+.title {
+  font-style: italic;
+  font-size: 18px;
+
+  > p {
+    margin-left: 30px;
+    font-style: normal;
+    text-decoration: underline;
+  }
+
+  ul {
+    margin-left: 20px;
+    font-style: normal;
+    text-decoration: none;
+    padding-bottom: 1rem;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
 @media (min-width: 720px) {
   section.home .right {
     margin-right: 5rem;
